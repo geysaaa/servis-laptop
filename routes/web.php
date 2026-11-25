@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServisController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,4 +14,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 Route::middleware('auth')->prefix('petugas')->group(function () {
     Route::get('/dashboard', fn () => view('petugas.dashboard'))->name('dashboard');
+    Route::get('/servis', [ServisController::class, 'index'])->name('servis.index');
+    Route::get('/servis/baru', [ServisController::class, 'create'])->name('servis.create');
+    Route::post('/servis', [ServisController::class, 'store'])->name('servis.store');
+    Route::get('/servis/{servis}', [ServisController::class, 'show'])->name('servis.show');
 });
