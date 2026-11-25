@@ -7,7 +7,7 @@ use App\Http\Controllers\ServisController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+       return view('publik.landing');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
