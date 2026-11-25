@@ -79,4 +79,46 @@ class ServisController extends Controller
 
         return view('petugas.servis.show', compact('servis'));
     }
+        public function update(Request $request, Servis $servis)
+    {
+        $data = $request->validate([
+            'status' => ['required', 'integer', 'between:0,4'],
+            'tgl_selesai' => ['nullable', 'date', 'after_or_equal:' . $servis->tgl_diterima->toDateString()],
+            'harga' => ['nullable', 'integer', 'min:0'],
+        ], [
+            'tgl_selesai.after_or_equal' => 'Tanggal selesai tidak boleh sebelum tanggal diterima.',
+            'harga.integer' => 'Harga harus berupa angka tanpa titik atau koma.',
+        ]);
+
+        DB::transaction(function () use ($data, $servis, $request) {
+            $statusBaru = (int) $data['status'];
+            $statusLama = $servis->status;
+
+            $tglSelesai = $data['tgl_selesai'] ?? null;
+            if ($statusBaru >= 3 && ! $tglSelesai) {
+                $tglSelesai = now()->toDateString();
+            }
+
+            $servis->update([
+                'status' => $statusBaru,
+                'tgl_selesai' => $tglSelesai,
+                'harga' => $data['harga'] ?? null,
+            ]);
+
+            if ($statusBaru > $statusLama) {
+                for ($i = $statusLama + 1; $i <= $statusBaru; $i++) {
+                    RiwayatStatus::create([
+                        'servis_id' => $servis->id,
+                        'status' => $i,
+                        'waktu' => now(),
+                        'diubah_oleh' => $request->user()->id,
+                    ]);
+                }
+            } elseif ($statusBaru < $statusLama) {
+                $servis->riwayat()->where('status', '>', $statusBaru)->delete();
+            }
+        });
+
+        return redirect()->route('servis.show', $servis)->with('tersimpan', true);
+    }
 }

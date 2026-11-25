@@ -18,4 +18,5 @@ Route::middleware('auth')->prefix('petugas')->group(function () {
     Route::get('/servis/baru', [ServisController::class, 'create'])->name('servis.create');
     Route::post('/servis', [ServisController::class, 'store'])->name('servis.store');
     Route::get('/servis/{servis}', [ServisController::class, 'show'])->name('servis.show');
+    Route::put('/servis/{servis}', [ServisController::class, 'update'])->name('servis.update');
 });
