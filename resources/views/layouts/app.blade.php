@@ -7,11 +7,12 @@
 <title>@yield('title') - Servis Laptop</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@100..900&family=Hanken+Grotesk:wght@100..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 
 <style>
 @layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
 ::-webkit-scrollbar{display:none;}
+body, input, button, select, textarea { font-family: 'Plus Jakarta Sans', sans-serif; }
 </style>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -40,21 +41,28 @@ tailwind.config={
       "space-xl":"2rem",margin:"1.5rem","space-xs":"0.25rem","space-md":"1rem"
     },
     fontFamily:{
-      "body-sm":["Hanken Grotesk"],"headline-md":["Bricolage Grotesque"],"ticket-code":["JetBrains Mono"],
-      "headline-lg-mobile":["Bricolage Grotesque"],"body-lg":["Hanken Grotesk"],"headline-lg":["Bricolage Grotesque"],
-      "body-md":["Hanken Grotesk"],"label-md":["Hanken Grotesk"],"label-sm":["Hanken Grotesk"],"headline-sm":["Bricolage Grotesque"]
+      "body-sm":["Plus Jakarta Sans","sans-serif"],
+      "headline-md":["Plus Jakarta Sans","sans-serif"],
+      "ticket-code":["JetBrains Mono","monospace"],
+      "headline-lg-mobile":["Plus Jakarta Sans","sans-serif"],
+      "body-lg":["Plus Jakarta Sans","sans-serif"],
+      "headline-lg":["Plus Jakarta Sans","sans-serif"],
+      "body-md":["Plus Jakarta Sans","sans-serif"],
+      "label-md":["Plus Jakarta Sans","sans-serif"],
+      "label-sm":["Plus Jakarta Sans","sans-serif"],
+      "headline-sm":["Plus Jakarta Sans","sans-serif"]
     },
     fontSize:{
-      "body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],
-      "headline-md":["22px",{lineHeight:"28px",fontWeight:"600"}],
-      "ticket-code":["15px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"700"}],
-      "headline-lg-mobile":["26px",{lineHeight:"34px",fontWeight:"600"}],
-      "body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],
-      "headline-lg":["32px",{lineHeight:"40px",fontWeight:"600"}],
-      "body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],
-      "label-md":["13px",{lineHeight:"18px",fontWeight:"600"}],
-      "label-sm":["11px",{lineHeight:"14px",fontWeight:"600"}],
-      "headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}]
+      "body-sm":["14px",{lineHeight:"20px",fontWeight:"600"}],
+      "headline-md":["24px",{lineHeight:"32px",fontWeight:"700"}],
+      "ticket-code":["16px",{lineHeight:"22px",letterSpacing:"0.05em",fontWeight:"700"}],
+      "headline-lg-mobile":["28px",{lineHeight:"36px",fontWeight:"700"}],
+      "body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],
+      "headline-lg":["36px",{lineHeight:"44px",fontWeight:"700"}],
+      "body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],
+      "label-md":["15px",{lineHeight:"20px",fontWeight:"600"}],
+      "label-sm":["13px",{lineHeight:"18px",fontWeight:"600"}],
+      "headline-sm":["20px",{lineHeight:"28px",fontWeight:"700"}]
     }
   }}
 }
