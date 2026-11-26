@@ -19,12 +19,14 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($data)) {
+        if (Auth::attempt($data + ['aktif' => 1])) {
             $request->session()->regenerate();
             return redirect()->intended(route('dashboard'));
         }
 
-        return back()->withErrors(['email' => 'Email atau kata sandi salah.'])->onlyInput('email');
+        return back()
+            ->withErrors(['email' => 'Email atau kata sandi salah, atau akun sudah dinonaktifkan.'])
+            ->onlyInput('email');
     }
 
     public function logout(Request $request)
