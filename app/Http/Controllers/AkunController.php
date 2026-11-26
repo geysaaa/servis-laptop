@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RiwayatStatus;
+use App\Models\Servis;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,5 +67,26 @@ class AkunController extends Controller
         }
 
         return back()->with('ok', $user->aktif ? 'Akun diaktifkan.' : 'Akun dinonaktifkan.');
+    }
+
+    public function destroy(User $user)
+    {
+        if ($user->peran !== 'petugas' || $user->aktif) {
+            abort(403, 'Hanya akun petugas yang sudah dinonaktifkan yang bisa dihapus.');
+        }
+
+        $punyaRiwayat = Servis::where('dibuat_oleh', $user->id)->exists()
+            || RiwayatStatus::where('diubah_oleh', $user->id)->exists();
+
+        if ($punyaRiwayat) {
+            return back()->withErrors([
+                'hapus' => "Akun {$user->name} tidak bisa dihapus karena sudah tercatat pada data servis. Biarkan akun tetap nonaktif.",
+            ]);
+        }
+
+        DB::table('sessions')->where('user_id', $user->id)->delete();
+        $user->delete();
+
+        return back()->with('ok', 'Akun dihapus.');
     }
 }

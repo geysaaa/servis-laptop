@@ -18,8 +18,14 @@
   </div>
 @endif
 
+@error('hapus')
+  <div class="mb-5 flex items-center gap-3 rounded-xl bg-red-50 text-red-700 px-4 py-3 text-sm font-semibold">
+    <span class="material-symbols-rounded text-[22px]">error</span>{{ $message }}
+  </div>
+@enderror
+
 <div class="bg-white rounded-2xl shadow-sm ring-1 ring-slate-900/5 overflow-x-auto">
-  <table class="w-full min-w-[640px] text-left text-sm">
+  <table class="w-full min-w-[680px] text-left text-sm">
     <thead>
       <tr class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
         <th class="px-6 py-3.5 font-semibold">Nama</th>
@@ -49,13 +55,23 @@
           </td>
           <td class="px-6 py-4">
             @if ($a->peran === 'petugas')
-              <form method="POST" action="{{ route('akun.status', $a) }}" @if ($a->aktif) onsubmit="return confirm('Nonaktifkan akun ini? Petugas tidak akan bisa login lagi.')" @endif>
-                @csrf
-                @method('PATCH')
-                <button type="submit" class="rounded-lg border border-slate-200 hover:bg-slate-50 px-3 py-1.5 text-sm font-semibold {{ $a->aktif ? 'text-red-600' : 'text-emerald-700' }}">
-                  {{ $a->aktif ? 'Nonaktifkan' : 'Aktifkan' }}
-                </button>
-              </form>
+              <div class="flex flex-wrap gap-2">
+                <form method="POST" action="{{ route('akun.status', $a) }}" @if ($a->aktif) onsubmit="return confirm('Nonaktifkan akun ini? Petugas tidak akan bisa login lagi.')" @endif>
+                  @csrf
+                  @method('PATCH')
+                  <button type="submit" class="rounded-lg border border-slate-200 hover:bg-slate-50 px-3 py-1.5 text-sm font-semibold {{ $a->aktif ? 'text-amber-700' : 'text-emerald-700' }}">
+                    {{ $a->aktif ? 'Nonaktifkan' : 'Aktifkan' }}
+                  </button>
+                </form>
+
+                @unless ($a->aktif)
+                  <form method="POST" action="{{ route('akun.destroy', $a) }}" onsubmit="return confirm('Hapus akun ini secara permanen? Tindakan ini tidak bisa dibatalkan.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="rounded-lg bg-red-50 hover:bg-red-100 px-3 py-1.5 text-sm font-semibold text-red-700">Hapus</button>
+                  </form>
+                @endunless
+              </div>
             @else
               <span class="text-slate-400">-</span>
             @endif

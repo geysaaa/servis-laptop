@@ -34,5 +34,6 @@ Route::middleware('auth')->prefix('petugas')->group(function () {
         Route::get('/akun/baru', [AkunController::class, 'create'])->name('akun.create');
         Route::post('/akun', [AkunController::class, 'store'])->name('akun.store');
         Route::patch('/akun/{user}/status', [AkunController::class, 'status'])->name('akun.status');
+                Route::delete('/akun/{user}', [AkunController::class, 'destroy'])->name('akun.destroy');
     });
 });
