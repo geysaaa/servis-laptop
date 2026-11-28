@@ -7,7 +7,7 @@
 
   <a href="{{ url('/') }}" class="flex items-center gap-3 mb-8">
     <span class="w-11 h-11 rounded-xl bg-blue-500 text-white flex items-center justify-center"><span class="material-symbols-rounded text-[24px]">laptop_mac</span></span>
-    <span class="text-xl font-extrabold text-white">Servis Laptop</span>
+    <span class="text-xl font-extrabold text-white">Farih Servis Laptop</span>
   </a>
 
   <div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl shadow-black/40">

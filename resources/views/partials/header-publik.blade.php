@@ -5,7 +5,7 @@
         <span class="material-symbols-rounded">laptop_mac</span>
       </span>
       <span class="leading-tight">
-        <span class="block font-extrabold text-slate-900">Servis Laptop</span>
+        <span class="block font-extrabold text-slate-900">Farih Servis Laptop</span>
         <span class="block text-[11px] font-medium text-slate-500">Pelacak Servis</span>
       </span>
     </a>

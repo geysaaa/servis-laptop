@@ -17,7 +17,7 @@
     <div class="flex items-center gap-3 px-6 h-20">
       <span class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center"><span class="material-symbols-rounded">laptop_mac</span></span>
       <div class="leading-tight">
-        <p class="font-extrabold text-lg">Servis Laptop</p>
+        <p class="font-extrabold text-lg">Farih Servis Laptop</p>
         <p class="text-xs text-blue-200">Pelacak Servis</p>
       </div>
     </div>
